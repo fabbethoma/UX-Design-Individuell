@@ -2,29 +2,34 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import AddToCart from './AddToCart';
 import { IoMdArrowRoundBack } from 'react-icons/all';
-
+import {useHistory} from 'react-router-dom';
+import {Modal} from 'antd'
+import {message} from 'antd'
+import menu from '../menu';
+import Sides from '../components/Sides'
 const HeaderImage = styled.div`
   height: 35vh;
   max-width: 100vw;
-  // overflow: hidden;
+  overflow: hidden;
   position: relative;
-  z-index: -1;
+
 `;
 const Img = styled.img`
   max-width: 100vw;
   max-height: initial;
+  z-index: -1;
 `;
 
 const ContentWrapper = styled.div`
-  height: 65vh;
+  height: 56vh;
   background-color: #f6f5f5;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 
-
   @media (max-width: 800px) {
     border-radius: 40px 40px 0px 0px;
+    // margin-bottom: 50px;
   }
   
 `;
@@ -96,6 +101,7 @@ const AddToCartWrapper = styled.div`
   display: flex;
   justify-items: flex-end;
   justify-content: space-around;
+  margin-bottom: 20px;
 `;
 const Price = styled.div`
   margin-left: 4vw;
@@ -114,13 +120,36 @@ const upperCasify = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
-const ChosenSoupPage = ({ soup, onClick }) => {
+const Details = ({ soup, onClick }) => {
   const [num, setNum] = useState(0);
+  const history = useHistory();
+
+ const [visible, setVisible] = useState(false);
+
+ const showModal = () => {
+    setVisible(true)
+  };
+
+
+  const handleOk = e => {
+    setVisible(false)
+  };
+
+  const handleCancel = e => {
+    console.log(e);
+    setVisible(false)
+  };
+
+  const success = () => {
+    message.success('Soup was added to cart');
+  };
 
   return (
     <div className='div'>
       <HeaderImage className='HeaderImage'>
-        <IoMdArrowRoundBack onClick={onClick} style={goBackStyle} />
+      <div onClick={onClick}>
+        <IoMdArrowRoundBack  style={goBackStyle} />
+        </div>
         <Img className='Img' src={soup.img}></Img>
       </HeaderImage>
       <ContentWrapper>
@@ -136,26 +165,35 @@ const ChosenSoupPage = ({ soup, onClick }) => {
         <AddToCartWrapper>
           <SoupQuantity>
             <Decrement
-              onClick={() => {
-                num > 0 && setNum(num - 1);
-              }}
+              onClick={() => {num > 0 && setNum(num - 1);}}
             >
               -
             </Decrement>
             <Quantity>{num + 1}</Quantity>
             <Increment
-              onClick={() => {
-                num < 9 && setNum(num + 1);
-              }}
+              onClick={() => {num < 9 && setNum(num + 1);}}
             >
               +
             </Increment>
           </SoupQuantity>
-          <AddToCart />
+           <AddToCart onSuccess={success} showModal={showModal}/>
+          <Modal
+          title="Vill du lägga till något?"
+          visible={visible}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          >
+            
+            <Sides title={'Lägg till dryck'} sides={menu.drinks}/>
+            
+            <Sides title={'Lägg till bröd'} sides={menu.breads}/>
+            
+
+          </Modal>
         </AddToCartWrapper>
       </ContentWrapper>
     </div>
   );
 };
 
-export default ChosenSoupPage;
+export default Details;

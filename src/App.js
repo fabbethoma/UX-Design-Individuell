@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import styled from 'styled-components';
 import userEvent from '@testing-library/user-event';
 import Soups from './components/soups';
 import menu from './menu';
-import ChosenSoupPage from './components/chosenSoupPage';
+import Details from './components/Details';
 import Filter from './components/Filter';
 import AddToCart from './components/AddToCart';
 import Deals from './components/Deals';
@@ -144,7 +143,7 @@ export default function App() {
       </StyledDiv>
     );
   } else if (adress && !isEmpty(chosenSoup)) {
-    return <ChosenSoupPage onClick={handleGoBackClick} soup={chosenSoup} />;
+    return <Details onClick={handleGoBackClick} soup={chosenSoup} />;
   } else if (adress) {
     return (
       <div>
