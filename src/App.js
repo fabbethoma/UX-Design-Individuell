@@ -8,6 +8,7 @@ import menu from './menu';
 import ChosenSoupPage from './components/chosenSoupPage';
 import Filter from './components/Filter';
 import AddToCart from './components/AddToCart';
+import Deals from './components/Deals';
 
 const StyledDiv = styled.div`
   color: #066638;
@@ -23,7 +24,10 @@ const StyledDiv = styled.div`
 
 const StyledInput = styled.input`
   width: 100%;
-  height: 20px;
+  height: 30px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 5px 5px 5px #ccc;
 `;
 
 const SoupWrapper = styled.div`
@@ -32,15 +36,22 @@ const SoupWrapper = styled.div`
   justify-content: center;
 `;
 
+const StyledAdress = styled.h3`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+`;
+
 //create stages. first soup stage.
 //on soupclick, pickedSoup stage
 //perhaps switch? for controlling pages.
 /*
 switch(user) {
-  case address: 
+  case adress: 
   return (<div></div>)
   break;
-  case chosenSoup && address:
+  case chosenSoup && adress:
     return (<div></div>)
     break;
 }
@@ -63,9 +74,9 @@ const filterByProp = (arr, str) => {
 };
 
 export default function App() {
-  const [address, setAddress] = useState('');
-  //const [address, setAddress] = useState('blommensbergsvägen 180'); // for dev reason.
-  const [newAddress, setNewAddress] = useState('Address');
+  const [adress, setadress] = useState('');
+  //const [adress, setadress] = useState('blommensbergsvägen 180'); // for dev reason.
+  const [newadress, setNewadress] = useState('adress');
   const [numberOfSoups, setNumberOfSoups] = useState(1);
   const [chosenSoup, setChosenSoup] = useState({});
   const [chosenFilter, setChosenFilter] = useState('');
@@ -90,11 +101,11 @@ export default function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(e.target.value);
-    setAddress(newAddress);
+    setadress(newadress);
   };
-  const handleAddressChange = (e) => {
+  const handleadressChange = (e) => {
     //console.log(e.target.value);
-    setNewAddress(e.target.value);
+    setNewadress(e.target.value);
   };
 
   //functions for filtering soups by property.
@@ -109,30 +120,34 @@ export default function App() {
         <p>Admin Page</p>
       </div>
     );
-  } else if (!address) {
+  } else if (!adress) {
     return (
       <StyledDiv className='App'>
         <div>
-          <h1>Välkommen till Souperb</h1>
+          <h1 style={{marginBottom: "1px"}}>Välkommen till</h1>
+          <h1 style={{fontSize: "60px", marginTop: "1px"}}>Souperb!</h1>
           <h3>Var befinner du dig någonstans?</h3>
           <form onSubmit={handleSubmit}>
             <StyledInput
-              value={newAddress}
-              onChange={handleAddressChange}
+              value={newadress}
+              onChange={handleadressChange}
               type='text'
               placeholder='Adress'
             ></StyledInput>
           </form>
+
+          <p style={{color: "#066638", margin: "20px auto", width: "80vw"}}>För att veta om vi kan leverera till dig, 
+          <b/>så ber vi dig skriva in din adress.</p>
         </div>
       </StyledDiv>
     );
-  } else if (address && !isEmpty(chosenSoup)) {
+  } else if (adress && !isEmpty(chosenSoup)) {
     return <ChosenSoupPage onClick={handleGoBackClick} soup={chosenSoup} />;
-  } else if (address) {
+  } else if (adress) {
     return (
       <div>
-        <h1>Välkommen </h1>
-        <h3>{address}</h3> {/* gör en onClick för attt ändra addressen. */}
+        <StyledAdress> Nuvarande adress: <StyledAdress style={{color: "red", fontSize: "18px"} }>  {adress} </StyledAdress> </StyledAdress> {/* gör en onClick för attt ändra adressen. */}
+        <Deals/>
         <Filter onClick={handleFilterClick} soups={menu.soups} />
         <SoupWrapper className='soupwrapper'>
           <Soups
