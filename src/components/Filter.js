@@ -12,7 +12,7 @@ const FilterElem = styled.div`
   margin-left: 20px;
   cursor: pointer;
   background-color: white;
-  padding: 10px;
+  padding: 5px;
   box-shadow: 0 4px 2px -2px gray;
   color: black;
   border-radius: 10px;
@@ -20,6 +20,10 @@ const FilterElem = styled.div`
   font-size: 20px;
   :hover {
     background-color: "#2EDE9E";
+  }
+
+  @media (max-width: 800px) {
+    
   }
 `;
 
@@ -32,7 +36,7 @@ const RemoveFilter = styled.div`
     background-color: darksalmon;
   }
   background-color: salmon;
-  padding: 10px;
+  padding: 5px;
   color: white;
   border-radius: 12px 12px 12px 12px;
   text-align: center;

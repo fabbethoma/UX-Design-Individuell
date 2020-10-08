@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import styled from 'styled-components';
 import userEvent from '@testing-library/user-event';
 import Soups from './components/soups';
 import menu from './menu';
-import ChosenSoupPage from './components/chosenSoupPage';
+import Details from './components/Details';
 import Filter from './components/Filter';
 import AddToCart from './components/AddToCart';
 import Deals from './components/Deals';
+
+import Cart from './pages/Cart';
+import Profile from './pages/Profile';
 
 const StyledDiv = styled.div`
   color: #066638;
@@ -16,7 +18,6 @@ const StyledDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  <link href="https://fonts.googleapis.com/css2?family=Mystery+Quest&display=swap" rel="stylesheet">
 
   width: 100vw;
   height: 100vh;
@@ -137,16 +138,16 @@ export default function App() {
           </form>
 
           <p style={{color: "#066638", margin: "20px auto", width: "80vw"}}>För att veta om vi kan leverera till dig, 
-          <b/>så ber vi dig skriva in din adress.</p>
+          så ber vi dig skriva in din adress.</p>
         </div>
       </StyledDiv>
     );
   } else if (adress && !isEmpty(chosenSoup)) {
-    return <ChosenSoupPage onClick={handleGoBackClick} soup={chosenSoup} />;
+    return <Details onClick={handleGoBackClick} soup={chosenSoup} />;
   } else if (adress) {
     return (
       <div>
-        <StyledAdress> Nuvarande adress: <StyledAdress style={{color: "red", fontSize: "18px"} }>  {adress} </StyledAdress> </StyledAdress> {/* gör en onClick för attt ändra adressen. */}
+        <StyledAdress> Nuvarande adress: <StyledAdress style={{color: "red", fontSize: "18px", marginLeft: "5px"} }>  {adress} </StyledAdress> </StyledAdress> {/* gör en onClick för attt ändra adressen. */}
         <Deals/>
         <Filter onClick={handleFilterClick} soups={menu.soups} />
         <SoupWrapper className='soupwrapper'>

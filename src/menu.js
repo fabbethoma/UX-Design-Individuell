@@ -106,27 +106,19 @@ let menu = {
     }
   ],
   drinks: [
-    { name: 'Pepsi', kcal: '92', price: '20', img: '' },
-    { name: 'Pepsi', kcal: '92', price: '20', img: '' },
-    { name: 'Pepsi', kcal: '92', price: '20', img: '' },
-    { name: 'Pepsi', kcal: '92', price: '20', img: '' },
-    { name: 'Pepsi', kcal: '92', price: '20', img: '' },
-    { name: 'Pepsi', kcal: '92', price: '20', img: '' },
-    { name: 'Pepsi', kcal: '92', price: '20', img: '' },
-    { name: 'Pepsi', kcal: '92', price: '20', img: '' }
+    { name: 'Pepsi', kcal: '92', price: '20', img: '', id: 1},
+    { name: 'Cola', kcal: '92', price: '20', img: '', id: 2},
+    { name: 'Fanta', kcal: '92', price: '20', img: '', id: 3 },
+    { name: 'Norrlands Guld', kcal: '92', price: '20', img: '', id: 4 }
   ],
   breads: [
-    { name: 'vitlöksbröd', kcal: '120', price: '35', img: '' },
-    { name: 'vitlöksbröd', kcal: '120', price: '35', img: '' },
-    { name: 'vitlöksbröd', kcal: '120', price: '35', img: '' },
-    { name: 'vitlöksbröd', kcal: '120', price: '35', img: '' },
-    { name: 'vitlöksbröd', kcal: '120', price: '35', img: '' },
-    { name: 'vitlöksbröd', kcal: '120', price: '35', img: '' },
-    { name: 'vitlöksbröd', kcal: '120', price: '35', img: '' },
-    { name: 'vitlöksbröd', kcal: '120', price: '35', img: '' }
+    { name: 'Vitlöksbröd', kcal: '120', price: '35', img: '', id: 1 },
+    { name: 'Bondlimpa', kcal: '120', price: '35', img: '', id: 2 },
+    { name: 'Fralla', kcal: '120', price: '35', img: '', id: 3 },
+    { name: 'vitlöksbröd igen', kcal: '120', price: '35', img: '', id:4 },
+
   ]
 };
 
 export default menu;
 
-//start off with something like this?
