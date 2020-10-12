@@ -16,7 +16,7 @@ const AddToCart = ({onSuccess, showModal}) => {
 
   return(
     <>
-      <Button onClick={() => showModal()}>
+      <Button onClick={() => {onSuccess(); showModal()}}>
          Lägg till i kundvagn
       </Button>
     </>

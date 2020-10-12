@@ -65,7 +65,7 @@ const Sides = ({ sides, title }) => {
           // setNum((ps) => ({ ...ps, [id]: ps[id] + 1 }));
           // console.log(objectToChange(id));
           console.log(objectToChange(id).amount = objectToChange(id).amount + 1 );
-          setNum(objectToChange(id).amount = objectToChange(id).amount + 1 );
+          // setNum(objectToChange(id).amount = objectToChange(id).amount + 1 );
 
           // console.log(theObject.amount);
         }
