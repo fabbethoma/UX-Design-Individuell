@@ -7,12 +7,13 @@ import {Modal} from 'antd'
 import {message} from 'antd'
 import menu from '../menu';
 import Sides from '../components/Sides'
+import {CartContext} from '../context/index'
+
 const HeaderImage = styled.div`
   height: 35vh;
   max-width: 100vw;
   overflow: hidden;
   position: relative;
-
 `;
 const Img = styled.img`
   max-width: 100vw;
@@ -123,8 +124,8 @@ const upperCasify = (string) => {
 const Details = ({ soup, onClick }) => {
   const [num, setNum] = useState(0);
   const history = useHistory();
-
- const [visible, setVisible] = useState(false);
+  const [cart, setCart] = useState({cart: []})
+  const [visible, setVisible] = useState(false);
 
  const showModal = () => {
     setVisible(true)
@@ -133,6 +134,7 @@ const Details = ({ soup, onClick }) => {
 
   const handleOk = e => {
     setVisible(false)
+    
   };
 
   const handleCancel = e => {
@@ -141,7 +143,7 @@ const Details = ({ soup, onClick }) => {
   };
 
   const success = () => {
-    message.success('Soup was added to cart');
+    message.success('Soppa tillagd i varukorg');
   };
 
   return (
