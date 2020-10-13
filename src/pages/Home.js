@@ -7,8 +7,6 @@ import Deals from '../components/Deals';
 import Filter from '../components/Filter';
 
 
-
-
 const StyledDiv = styled.div`
   color: #066638;
   background-color: #ddebe9;
@@ -37,6 +35,8 @@ const SoupWrapper = styled.div`
 const StyledAdress = styled.h3`
   display: flex;
   justify-content: center;
+  height: 5vh;
+  padding-top: 15px;
   align-items: center;
   border-bottom: 1px solid #ccc;
 `;
@@ -60,12 +60,12 @@ function isEmpty(obj) {
 
 const Home = () =>{
 
-const [adress, setadress] = useState('');
-  //const [adress, setadress] = useState('blommensbergsvägen 180'); // for dev reason.
+const [adress, setadress] = useState();
 const [newadress, setNewadress] = useState('adress');
 const [numberOfSoups, setNumberOfSoups] = useState(1);
 const [chosenSoup, setChosenSoup] = useState();
 const [chosenFilter, setChosenFilter] = useState('');
+
 const onAddToCartClick = () => {
     setNumberOfSoups(numberOfSoups);
     //open modal.
@@ -89,7 +89,7 @@ const onAddToCartClick = () => {
     console.log(e.target.value);
     setadress(newadress);
   };
-  const handleadressChange = (e) => {
+  const handleAdressChange = (e) => {
     //console.log(e.target.value);
     setNewadress(e.target.value);
     };
@@ -103,7 +103,7 @@ if(chosenSoup) {
 } 
 return (
     <div>
-        <StyledAdress> Nuvarande adress: <StyledAdress style={{color: "red", fontSize: "18px", marginLeft: "5px"} }>  {adress} </StyledAdress> </StyledAdress> {/* gör en onClick för attt ändra adressen. */}
+        <StyledAdress onClick={handleAdressChange}> Nuvarande adress: <StyledAdress style={{color: "red",  marginLeft: "5px"} }> {adress} </StyledAdress> </StyledAdress> {/* gör en onClick för attt ändra adressen. */}
         <Deals/>
         <Filter onClick={handleFilterClick} soups={menu.soups} />
         <SoupWrapper className='soupwrapper'>

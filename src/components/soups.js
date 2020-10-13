@@ -4,6 +4,8 @@ import { BsClockHistory } from "react-icons/bs";
 
 const StyledSpan = styled.span`
   font-size: 12px;
+  // font-variant: small-caps;
+  font-weight: 600;
   position: absolute;
   left: ${(p) => p.position === 'name' && '10px'};
   right: ${(p) => p.position !== 'name' && '10px'};
