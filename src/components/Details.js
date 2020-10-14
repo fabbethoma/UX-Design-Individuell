@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import AddToCart from './AddToCart';
 import { IoMdArrowRoundBack } from 'react-icons/all';
@@ -124,8 +124,13 @@ const upperCasify = (string) => {
 const Details = ({ soup, onClick }) => {
   const [num, setNum] = useState(0);
   const history = useHistory();
-  const [cart, setCart] = useState({cart: []})
+  const {cart, setCart} = useContext(CartContext)
   const [visible, setVisible] = useState(false);
+
+  
+  const updateCart = () => {
+    setCart()
+  }
 
  const showModal = () => {
     setVisible(true)
@@ -134,7 +139,12 @@ const Details = ({ soup, onClick }) => {
 
   const handleOk = e => {
     setVisible(false)
-    
+    let array = {...cart.current_soup}
+    setCart({
+        ...cart,
+        cart: [array]
+        // gör så att den lägger till 
+      })    
   };
 
   const handleCancel = e => {
@@ -146,6 +156,7 @@ const Details = ({ soup, onClick }) => {
     message.success('Soppa tillagd i varukorg');
   };
 
+  if (!soup) return;
   return (
     <div className='div'>
       <HeaderImage className='HeaderImage'>

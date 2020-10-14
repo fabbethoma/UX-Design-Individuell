@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {useHistory} from 'react-router-dom'
 import styled from 'styled-components'
 import { IoMdArrowRoundBack } from 'react-icons/all';
+import {CartContext} from '../context/index'
 
 
 const ContainerDiv = styled.div`
@@ -61,6 +62,8 @@ const goBackStyle = {
 
 const Cart = (props) =>{
   const history = useHistory();
+  const {cart, setCart} = useContext(CartContext);
+
 
 return (
     <ContainerDiv>
@@ -72,17 +75,15 @@ return (
       </TitleDiv>
         
         <AddedObjects>
-        {/* render added objects here*/}
-        Här ska en vara vara
+        {cart.cart[0]}
         </AddedObjects>
         <AddedObjects>
-        {/* render added objects here*/}
-        Här ska en vara vara
+        {cart.cart[1]}
         </AddedObjects>
         <AddedObjects>
-        {/* render added objects here*/}
-        Här ska en vara vara
+        {cart.cart[2]}
         </AddedObjects>
+
 
         <ToPayment>
           TILL BETALNING

@@ -1,30 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
 import Soups from '../components/soups'
 import menu from '../menu'
-import ChosenSoupPage from '../components/Details';
+import Details from '../components/Details';
 import Deals from '../components/Deals';
 import Filter from '../components/Filter';
+import {CartContext} from '../context/index'
 
+// const StyledDiv = styled.div`
+//   color: #066638;
+//   background-color: #ddebe9;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
 
-const StyledDiv = styled.div`
-  color: #066638;
-  background-color: #ddebe9;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+//   width: 100vw;
+//   height: 100vh;
+// `;
 
-  width: 100vw;
-  height: 100vh;
-`;
-
-const StyledInput = styled.input`
-  width: 100%;
-  height: 30px;
-  border-radius: 10px;
-  border: none;
-  box-shadow: 5px 5px 5px #ccc;
-`;
+// const StyledInput = styled.input`
+//   width: 100%;
+//   height: 30px;
+//   border-radius: 10px;
+//   border: none;
+//   box-shadow: 5px 5px 5px #ccc;
+// `;
 
 const SoupWrapper = styled.div`
   display: flex;
@@ -65,19 +65,28 @@ const [newadress, setNewadress] = useState('adress');
 const [numberOfSoups, setNumberOfSoups] = useState(1);
 const [chosenSoup, setChosenSoup] = useState();
 const [chosenFilter, setChosenFilter] = useState('');
-
+const { cart, setCart } = useContext(CartContext)
+  
 const onAddToCartClick = () => {
     setNumberOfSoups(numberOfSoups);
     //open modal.
   }; // send as props.
 
   const handleGoBackClick = () => {
-    setChosenSoup({});
+    
   };
 
   const handleSoupClick = (id) => {
     const chosenSoup = menu.soups.find((s) => s.id === id);
-    setChosenSoup(chosenSoup);
+    const {drinks, breads} = menu
+    setCart({
+      ...cart,
+      current_soup: {
+        ...chosenSoup,
+        sides: [...drinks, ...breads]
+      }
+    })
+    
   };
   //change which soups rendering, - eg. if Veganks is clicked, show only Vegansk soppa.
   const handleFilterClick = (key) => {
@@ -94,12 +103,14 @@ const onAddToCartClick = () => {
     setNewadress(e.target.value);
     };
   const goBack = () => {
-    setChosenSoup(undefined)
+    setCart({
+      ...cart,
+      current_soup: {}
+    })
 }
 
-
-if(chosenSoup) {
-    return (<div><ChosenSoupPage onClick={goBack} soup={chosenSoup} /></div>)
+if(Object.keys(cart.current_soup).length != 0) {
+    return (<div><Details onClick={goBack} soup={cart.current_soup} /></div>)
 } 
 return (
     <div>

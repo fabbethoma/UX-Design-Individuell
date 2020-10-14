@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 import styled from 'styled-components'
-import { Links, useHistory } from 'react-router-dom';
+import {useHistory } from 'react-router-dom';
 import {CartContext} from '../context/index'
 // det funkar va
 // alltså den displayar ingenting, den borde väl säga "0"?, ja precis
@@ -24,7 +24,7 @@ const Buttons = styled.div`
 
 `;
 
-const CartAmout =  styled.p`
+const CartAmount =  styled.p`
 background-color: #005B4D;
 color: #F8F8F8;
 border-radius: 10px;
@@ -38,29 +38,35 @@ bottom: 1px;
 export default function Footer() {
     const {cart} = useContext(CartContext)
     const history = useHistory()
+
+
   
   //om du kollar initiala statet i app2.js så gjorde jag det såhär: {cart: []} så det blir då cart.cart.length
   // du kan ändra det initiala state sen nu hur du nu vill ha det
 
     const {visible, setVisible} = useState(false);
 
-    const cartVisible = () => {
-      if(cart.cart.length < 1){
-        setVisible(true);
-      }
-      else{
-        setVisible(false);
-      }
-    }
+    // const cartVisible = () => {
+    //   if(cart.cart.length < 1){
+    //     return (
+    //     <CartAmount> {cart.cart.length}</CartAmount>
+    //     )
+    //   }
+    //   else{
+    //     return null;
+    //   }
+    // }
 
 
     return (
     <Container>
         <Buttons onClick={() => history.push('/home')}>HEM</Buttons>
           
-          <Buttons onClick={() => history.push('/cart')}>KUNDVAGN <CartAmout> {cartVisible}</CartAmout> </Buttons> 
+          <Buttons onClick={() => history.push('/cart')}>KUNDVAGN  </Buttons> 
 
         <Buttons onClick={() => history.push('/profile')}>PROFIL</Buttons>
     </Container>
     )
 }
+
+{/* <CartAmount>{cart.cart.length} </CartAmount> */}

@@ -16,19 +16,18 @@ const Container = styled.div`
 width: 100vw;
 `;
 // här kan du göra ett context state kanske. där du har din varukorg
-// då har du varukorgen tillgänglig vid betalningssteget sen också 
-// får kolla på det
-// kan visa lite snabbt om du vill
-// sure! hm nu ska vi se :D *laughs in nerd* hahaha
-// en sek
-//jag gör en context mapp i src
-// kör ditt race!
-//hm kanske behövs ett state här
+// då har du varukorgen tillgänglig vid betalningssteget sen också
 //nu har vi skapat en provider som kan passa statet genom alla componenter
 
+const initialState = {
+  cart: [],
+  current_soup: {
+    
+  }
+}
 
 export default function App2() {
-  const [cart, setCart] = useState({cart: [4]})
+  const [cart, setCart] = useState(initialState)
     return(
       <div>
         <CartContext.Provider value={{cart, setCart}}>

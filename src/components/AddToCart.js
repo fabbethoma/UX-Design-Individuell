@@ -1,5 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import styled from 'styled-components';
+import {CartContext} from '../context/index'
+import menu from '../menu'
 
 const Button = styled.button`
   cursor: pointer;
@@ -14,9 +16,22 @@ const Button = styled.button`
 
 const AddToCart = ({onSuccess, showModal}) => {
 
+  const {cart, setCart} = useContext(CartContext);
+
+  const AddToCart = (id) => {
+
+  setCart({
+    ...cart,
+    cart: [...cart.cart, cart.current_soup ]
+  });
+
+  console.log(cart);
+    
+  };
+
   return(
     <>
-      <Button onClick={() => {onSuccess(); showModal()}}>
+      <Button onClick={() => {onSuccess(); AddToCart(); showModal()}}>
          Lägg till i kundvagn
       </Button>
     </>

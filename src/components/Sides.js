@@ -43,35 +43,7 @@ justify-content: space-between;
 
 `;
 
-const Sides = ({ sides, title }) => {
-
-    const [num, setNum] = useState([
-        { id:menu.drinks[0].id, amount: 0, type: menu.drinks[0].type },
-        { id:menu.drinks[1].id, amount: 0, type: menu.drinks[1].type },
-        { id:menu.drinks[2].id, amount: 0, type: menu.drinks[2].type },
-        { id:menu.drinks[3].id, amount: 0, type: menu.drinks[3].type },
-
-        { id:menu.breads[0].id, amount: 0, type: menu.breads[0].type },
-        { id:menu.breads[1].id, amount: 0, type: menu.breads[1].type },
-        { id:menu.breads[2].id, amount: 0, type: menu.breads[2].type },
-        { id:menu.breads[3].id, amount: 0, type: menu.breads[3].type }
-    ]);
-  
-  const { cart, setCart } = useContext(CartContext)
-  //sådär, nu kan du använda setCart här som exempel och få tillgång till cart-statet 
-// asgrymt, så om jag nu vill lägga till en cola, så gör jag typ "setCart(nånting)"
-    // ja precis. tänkte dock om du kanske ska göra det när du trycker på OK. Allting läggs till. Men nu har ju varje knapp sitt eget state
-    // kanske smartare att göra som du tänkte, att man lägger till det när man klickar på OK. 
-  // borde funka, då gör du ett object i arrayen med all info för den rätten man beställt
-  // men man behöver ju samla all data någonstans kom jag på
-  // just nu är allt bara visuellt, har ingen backend. 
-
-  // testa lite och se, kanske att man ändå kan använda cart så uppdateras det när man lägger till ta bort. 
-  // klickar man på krysset eller backar så tar man bort objektet från cart-statet, borde ju gå
-  // mjo, btw, navbaren finns i layout/footer.jsx såg att du var o kikade där
-  // ah
-  // kolla i 
-  function init() {
+ function init() {
     return {count: 0}
   }
   
@@ -87,33 +59,74 @@ const Sides = ({ sides, title }) => {
     }
   }
 
-  const ButtonGroup = () => {
-
+  const ButtonGroup = ({item}) => {
     const [state, dispatch] = useReducer(buttonReducer, 0, init)
-
-    const onClickHandler = (type) => dispatch({type: type})
+    const {cart, setCart} = useContext(CartContext)
+    const onClickHandler = (type) => dispatch({ type: type })
     
-    // varje knapp har sitt egna state nu ju som styr countet. 
-    // sedan för att pusha till varukorgen så kan man lösa det när man klickar på OK kanske? 
+    const onItemUpdate = (item, count) => {
+      
+        let arr = cart.current_soup.sides.map((side) => side.id === item.id && side.type === item.type
+          ?
+          { ...side, amount: count }
+          :
+          side
+        )
+      
+    
+      setCart({
+        ...cart,
+        current_soup: {
+          ...cart.current_soup,
+          sides: [
 
+            ...arr
+          ]
+        }
+      })
+    }
+    
     return (
       <>
         <Decrement
-          /* disabled={} */
-          onClick={() => onClickHandler('DECREMENT')}>
+          onClick={() => { onClickHandler('DECREMENT'); onItemUpdate(item, state.count);}}>
           -
         </Decrement>
         <Quantity>{state.count}</Quantity>
         <Increment
           disabled={state.count === 5 ? true : false}
-          // såg nu att dem var divar. Kör du buttons så kan du disablea dem men vi
-           //lägga det i buttonReducer funktionen också, KÖR VAD SOM ÄR LÄTTAST whoops caps
-          onClick={() => onClickHandler('INCREMENT')}>
+          onClick={() => { onClickHandler('INCREMENT'); onItemUpdate(item, state.count);}}>
           +
         </Increment>
       </>
     )
-  }
+}
+  
+const Sides = ({ sides, title}) => {
+  
+    return (
+      <div>
+        <p>{title}</p>
+            <ul>{sides && sides.map((item) => {
+                return (
+                    <ItemList key={item.id} type={item.type}>{item.name} {item.price}
+                        <SoupQuantity>
+                           <ButtonGroup
+                           item={item} />
+                        </SoupQuantity>
+                    </ItemList>
+                )
+            })}
+         </ul>
+      </div>
+    )
+
+}
+
+export default Sides;
+
+
+
   //   const increment = (id, type) => {
   //     if (!num) return; 
   //       // setNum((ps) => ({ ...ps, [id]: ps[id].amount + 1 })); <----------- hale theObject = num.find(elem => elem.id === id && elem.type === type);
@@ -146,34 +159,17 @@ const Sides = ({ sides, title }) => {
   //   const decrement = (id) => {
         
   //   }
-  
-    return (
-      <div>
-        <p>{title}</p>
-            <ul>{sides && sides.map((elem) => {
-                return (
-                    <ItemList key={elem.id} type={elem.type}>{elem.name}
-                        <SoupQuantity>
-                            {/* <Decrement
-                            onClick={() => decrement(elem.id, elem.type)}>
-                              -
-                            </Decrement>
-                            <Quantity>{num.id}</Quantity>
-                            <Increment  
-                                onClick={() => increment(elem.id, elem.type)}>
-                              +
-                          </Increment> */}
-                           <ButtonGroup />
-                        </SoupQuantity>
-                    </ItemList>
-                )
-            })}
-         </ul>
-      </div>
-    )
 
-}
 
-export default Sides;
+  /*  const [num, setNum] = useState([
+        { id:menu.drinks[0].id, amount: 0, type: menu.drinks[0].type },
+        { id:menu.drinks[1].id, amount: 0, type: menu.drinks[1].type },
+        { id:menu.drinks[2].id, amount: 0, type: menu.drinks[2].type },
+        { id:menu.drinks[3].id, amount: 0, type: menu.drinks[3].type },
 
+        { id:menu.breads[0].id, amount: 0, type: menu.breads[0].type },
+        { id:menu.breads[1].id, amount: 0, type: menu.breads[1].type },
+        { id:menu.breads[2].id, amount: 0, type: menu.breads[2].type },
+        { id:menu.breads[3].id, amount: 0, type: menu.breads[3].type }
+    ]); */
             
