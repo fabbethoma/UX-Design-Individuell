@@ -79,11 +79,14 @@ const onAddToCartClick = () => {
   const handleSoupClick = (id) => {
     const chosenSoup = menu.soups.find((s) => s.id === id);
     const {drinks, breads} = menu
+    // finns det redan en soppa måntro?
+    let temp = cart.cart
+    
     setCart({
-      ...cart,
+      cart: [...cart.cart],
       current_soup: {
         ...chosenSoup,
-        sides: [...drinks, ...breads]
+        sides: [...drinks, ...breads],
       }
     })
     

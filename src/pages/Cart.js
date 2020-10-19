@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 import {useHistory} from 'react-router-dom'
 import styled from 'styled-components'
 import { IoMdArrowRoundBack } from 'react-icons/all';
-import {CartContext} from '../context/index'
+import {CartContext} from '../context'
 
 
 const ContainerDiv = styled.div`
@@ -73,7 +73,7 @@ return (
       <TitleDiv>
         <Title>KUNDVAGN</Title>
       </TitleDiv>
-        
+        {/* 
         <AddedObjects>
         {cart.cart[0]}
         </AddedObjects>
@@ -83,8 +83,12 @@ return (
         <AddedObjects>
         {cart.cart[2]}
         </AddedObjects>
-
-
+ */}
+        {cart.cart && cart.cart.map(item => (
+          <AddedObjects>
+          {item.name}
+          </AddedObjects>
+        ))}
         <ToPayment>
           TILL BETALNING
         </ToPayment>
