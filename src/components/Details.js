@@ -140,11 +140,19 @@ const Details = ({ soup, onClick }) => {
   const handleOk = e => {
     setVisible(false)
     let array = {...cart.current_soup}
-    setCart({
-        ...cart,
-        cart: [array]
+  /*   setCart({
+        cart: [...cart.cart, array],
+        current_soup: {}
         // gör så att den lägger till 
-      })    
+      })    */ 
+
+      
+  setCart({
+    ...cart,
+    cart: [...cart.cart, cart.current_soup ],
+    current_soup: {}
+  });
+
   };
 
   const handleCancel = e => {
