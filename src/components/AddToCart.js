@@ -18,20 +18,20 @@ const AddToCart = ({onSuccess, showModal}) => {
 
   const {cart, setCart} = useContext(CartContext);
 
-  const AddToCartBtn = (id) => {
-/* 
-  setCart({
-    ...cart,
-    cart: [...cart.cart, cart.current_soup ]
-  });
- */
-  console.log(cart);
+  // const AddToCart = (id) => {
+
+  // setCart({
+  //   ...cart,
+  //   cart: [...cart.cart, cart.current_soup ]
+  // });
+
+  // console.log(cart);
     
-  };
+  // };
 
   return(
     <>
-      <Button onClick={() => {onSuccess(); AddToCartBtn(); showModal()}}>
+      <Button onClick={() => {onSuccess(); showModal()}}>
          Lägg till i kundvagn
       </Button>
     </>
