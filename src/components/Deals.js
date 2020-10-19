@@ -34,9 +34,15 @@ const contentStyle = {
   background: '#DDEBE9',
 };
 
+const dealStyle = {
+  borderRadius: '10px',
+  width: '90vw',
+  margin: 'auto',
+};
+
 const Deals = () => {
 return (
-        <Carousel autoplay={onChange} effect="fade">
+        <Carousel style={dealStyle} autoplay={onChange} effect="fade">
           <div>
             <h3 style={contentStyle}>Få din sjätte soppa gratis!</h3>
           </div>

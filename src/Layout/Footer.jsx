@@ -2,10 +2,7 @@ import React, {useContext, useState} from 'react';
 import styled from 'styled-components'
 import {useHistory } from 'react-router-dom';
 import {CartContext} from '../context/index'
-// det funkar va
-// alltså den displayar ingenting, den borde väl säga "0"?, ja precis
-// ser inget i navbaren, nu då? 
-// toString gillade den inte haha
+
 const Container = styled.div`
 width: 100vw;
 position: fixed;
@@ -39,15 +36,10 @@ export default function Footer() {
     const {cart} = useContext(CartContext)
     const history = useHistory()
 
-
-  
-  //om du kollar initiala statet i app2.js så gjorde jag det såhär: {cart: []} så det blir då cart.cart.length
-  // du kan ändra det initiala state sen nu hur du nu vill ha det
-
-    const {visible, setVisible} = useState(false);
+    // const {visible, setVisible} = useState(false);
 
     // const cartVisible = () => {
-    //   if(cart.cart.length < 1){
+    //   if(cart.cart.length > 0){
     //     return (
     //     <CartAmount> {cart.cart.length}</CartAmount>
     //     )
@@ -62,7 +54,7 @@ export default function Footer() {
     <Container>
         <Buttons onClick={() => history.push('/home')}>HEM</Buttons>
           
-          <Buttons onClick={() => history.push('/cart')}>KUNDVAGN  </Buttons> 
+          <Buttons onClick={() => history.push('/cart')}>KUNDVAGN <CartAmount> {cart.cart.length}</CartAmount> </Buttons> 
 
         <Buttons onClick={() => history.push('/profile')}>PROFIL</Buttons>
     </Container>

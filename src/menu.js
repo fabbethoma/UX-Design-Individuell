@@ -29,7 +29,7 @@ let menu = {
     {
       name: 'Lax och saffranssoppa',
       kcal: '83',
-      price: '110',
+      price: '120',
       img:
         'https://assets.icanet.se/q_auto,f_auto/imagevaultfiles/id_211738/cf_259/rostad-majssoppa-med-quesadillas-726503-liten.jpg',
       category: 'soup',
@@ -42,7 +42,7 @@ let menu = {
     {
       name: 'Mustig tomatsoppa',
       kcal: '83',
-      price: '110',
+      price: '89',
       img:
         'https://aomeassetsprod.blob.core.windows.net/editorial/2017/05/soppa-pistou.jpg',
       category: 'soup',
@@ -55,7 +55,7 @@ let menu = {
     {
       name: 'Krämig blomkålssoppa',
       kcal: '83',
-      price: '110',
+      price: '85',
       img:
         'https://cdn1.tasteline.com/Kramig-blomkalssoppa-med-vitloksstekta-krutonger-och-knaprigt-flask-foto-Nurlan-Emir-Mathem-1-360x360.jpg',
       category: 'soup',
@@ -68,7 +68,7 @@ let menu = {
     {
       name: 'Len Linssoppa',
       kcal: '83',
-      price: '110',
+      price: '99',
       img:
         'https://assets.icanet.se/q_auto,f_auto/imagevaultfiles/id_76272/cf_259/linssoppa-med-tomat-541439.jpg',
       category: 'soup',
@@ -81,7 +81,7 @@ let menu = {
     {
       name: 'Créme ninon',
       kcal: '83',
-      price: '110',
+      price: '140',
       img:
         'https://assets.icanet.se/q_auto,f_auto/imagevaultfiles/id_44511/cf_259/creme-ninon-5118.jpg',
       category: 'soup',
@@ -94,7 +94,7 @@ let menu = {
     {
       name: 'Svampsoppa',
       kcal: '83',
-      price: '110',
+      price: '125',
       img:
         'https://www.landleyskok.se/wp-content/uploads/2020/09/svampsoppa-D14I8537.jpg',
       category: 'soup',
@@ -109,12 +109,12 @@ let menu = {
     { name: 'Pepsi Max', kcal: '0', price: '20', img: '', id: 1, type: 'drink'},
     { name: 'Coca Cola', kcal: '92', price: '20', img: '', id: 2, type: 'drink'},
     { name: 'Fanta', kcal: '92', price: '20', img: '', id: 3,type: 'drink' },
-    { name: 'Norrlands Guld', kcal: '92', price: '20', img: '', id: 4, type: 'drink' }
+    { name: 'Norrlands Guld', kcal: '92', price: '35', img: '', id: 4, type: 'drink' }
   ],
   breads: [
     { name: 'Vitlöksbröd', kcal: '120', price: '35', img: '', id: 1, type: 'bread' },
-    { name: 'Bondlimpa', kcal: '95', price: '35', img: '', id: 2, type: 'bread' },
-    { name: 'Fralla', kcal: '60', price: '35', img: '', id: 3, type: 'bread' },
+    { name: 'Bondlimpa', kcal: '95', price: '25', img: '', id: 2, type: 'bread' },
+    { name: 'Fralla', kcal: '60', price: '15', img: '', id: 3, type: 'bread' },
     { name: 'vitlöksbröd igen', kcal: '120', price: '35', img: '', id:4, type: 'bread' },
 
   ]

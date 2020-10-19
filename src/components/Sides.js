@@ -94,7 +94,6 @@ justify-content: space-between;
         </Decrement>
         <Quantity>{state.count}</Quantity>
         <Increment
-          disabled={state.count === 5 ? true : false}
           onClick={() => { onClickHandler('INCREMENT'); onItemUpdate(item, state.count);}}>
           +
         </Increment>
@@ -109,7 +108,7 @@ const Sides = ({ sides, title}) => {
         <p>{title}</p>
             <ul>{sides && sides.map((item) => {
                 return (
-                    <ItemList key={item.id} type={item.type}>{item.name} {item.price}
+                    <ItemList key={item.id} type={item.type}>{item.name}: {item.price}kr
                         <SoupQuantity>
                            <ButtonGroup
                            item={item} />
