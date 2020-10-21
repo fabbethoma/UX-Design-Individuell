@@ -25,7 +25,7 @@ const StyledInput = styled.input`
 function Adress() {
   const [adress, setAdress] = useState('');
   const history = useHistory();
-  let currentAdress = localStorage.getItem('user-adress');
+  let currentAdress = localStorage.getItem('user-adress', '');
   
   const handleAdressChange = (e) => {
     setAdress(e.target.value);
@@ -59,10 +59,11 @@ function Adress() {
         <form onSubmit={submit}>
           <StyledInput
             // value={newAdress}
+            // value={inputText}
             onChange={handleAdressChange}
             type='text'
             placeholder='Adress'
-          ></StyledInput>
+          />
         </form>
         <p style={{color: "#066638", margin: "20px auto", width: "80vw"}}>För att veta om vi kan leverera till dig, 
         så ber vi dig skriva in din adress.</p>

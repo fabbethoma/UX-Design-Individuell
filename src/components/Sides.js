@@ -108,12 +108,12 @@ const Sides = ({ sides, title}) => {
         <p>{title}</p>
             <ul>{sides && sides.map((item) => {
                 return (
-                    <ItemList key={item.id} type={item.type}>{item.name}: {item.price}kr
-                        <SoupQuantity>
-                           <ButtonGroup
-                           item={item} />
-                        </SoupQuantity>
-                    </ItemList>
+                  <ItemList key={item.id} type={item.type}>{item.name}: {item.price}kr
+                      <SoupQuantity>
+                         <ButtonGroup
+                         item={item} />
+                      </SoupQuantity>
+                  </ItemList>
                 )
             })}
          </ul>
