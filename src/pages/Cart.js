@@ -173,10 +173,13 @@ return (
           
         }
 
+        {total > 0 
+        ? 
         <ToPayment>
           TILL BETALNING
         </ToPayment>
-
+        : null
+        }
     </ContainerDiv>
   )
 }

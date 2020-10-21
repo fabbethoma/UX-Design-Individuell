@@ -58,7 +58,7 @@ function isEmpty(obj) {
     return filtered;
   };
 
-const Home = () =>{
+const Home = ({inputText}) =>{
 
 const [adress, setadress] = useState();
 const [newadress, setNewadress] = useState('adress');
@@ -79,7 +79,7 @@ const onAddToCartClick = () => {
   const handleSoupClick = (id) => {
     const chosenSoup = menu.soups.find((s) => s.id === id);
     const {drinks, breads} = menu
-    // finns det redan en soppa måntro?
+
     let temp = cart.cart
     
     setCart({
@@ -117,7 +117,7 @@ if(Object.keys(cart.current_soup).length != 0) {
 } 
 return (
     <div>
-        <StyledAdress onClick={handleAdressChange}> Nuvarande adress: <StyledAdress style={{color: "red",  marginLeft: "5px"} }> {adress} </StyledAdress> </StyledAdress> {/* gör en onClick för attt ändra adressen. */}
+        <StyledAdress onClick={handleAdressChange}> Nuvarande adress: <StyledAdress style={{color: "red",  marginLeft: "5px"} }> {inputText} </StyledAdress> </StyledAdress> {/* gör en onClick för attt ändra adressen. */}
         <Deals/>
         <Filter onClick={handleFilterClick} soups={menu.soups} />
         <SoupWrapper className='soupwrapper'>

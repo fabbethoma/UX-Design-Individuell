@@ -29,7 +29,7 @@ const ContentWrapper = styled.div`
   justify-content: space-around;
 
   @media (max-width: 800px) {
-    border-radius: 40px 40px 0px 0px;
+    // border-radius: 40px 40px 0px 0px;
     // margin-bottom: 50px;
   }
   
