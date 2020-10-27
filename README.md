@@ -1,3 +1,15 @@
+ABOUT PROJECT:
+
+In short:
+This project was the second part of a UX-Design course. The goal was to identify user needs, user stories, and create a demo in figma (link further down) based on those needs.
+
+This is the UX-project, but built with React. 
+
+https://www.figma.com/file/tL19YXSOiIpwaYzoEP6oBO/Grupp7?node-id=169%3A28
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

@@ -1,7 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import styled from 'styled-components'
-
+import {Modal} from 'antd'
+import {message} from 'antd'
+import Payment from '../components/Payment'
+import swishLogo from '../img/swish.png'
 
 const ContainerDiv = styled.div`
   height: 90vh;
@@ -50,7 +53,7 @@ justify-content: center;
 
 const SettingsDiv = styled.div`
 
-height: 10vh;
+height: 15vh;
 width: 100vw;
 // display: flex;
 // justify-content: space-between;
@@ -77,6 +80,16 @@ font-weight: 600;
 
 `;
 
+const StyledInput = styled.input`
+color: #9586A8;
+justify-content: flex-start;
+margin-left: 20px;
+border: none;
+outline: none;
+background: none;
+
+`;
+
 const settingStyle = {
 
 marginLeft: '10px',
@@ -85,7 +98,40 @@ justifyContent: 'flex-start',
 }
 
 const Profile = () =>{
+
 const history = useHistory();
+const [visible, setVisible] = useState(false);
+
+const [adress, setAdress] = useState();
+const [newAdress, setNewAdress] = useState('');
+let currentAdress = localStorage.getItem('user-adress', '');
+
+let user_name = localStorage.getItem('user-name', '');
+
+const handleAdressChange = (e) => {
+  setNewAdress(e.target.value);
+}
+
+const showModal = () => {
+  setVisible(true)
+};
+
+const handleCancel = e => {
+  console.log(e);
+  setVisible(false)
+};
+
+const success = () => {
+  message.success('Din adress är nu ändrad');
+};
+
+const handleOk = e => {
+  e.preventDefault();
+  success();
+  setNewAdress(newAdress)
+  localStorage.setItem('user-adress', newAdress);
+  setVisible(false);
+}
 
 
 return (
@@ -93,24 +139,46 @@ return (
         <TitleDiv>
           <Title>Profil</Title>
         </TitleDiv>
-        <Title>Your Name</Title>
-
-        <Title style={settingStyle}> Betalmetod </Title>
+        <Title>
+          {user_name
+          ? <Title>{user_name}</Title>
+          : <Title></Title>
+          }
+          
+        </Title> 
+        {/* Ladda in användarnamn från localstorage / annars rendera ingenting */}
+        <Title style={settingStyle}> Betalningsmetod </Title>
         <SettingsDiv>
-           <SettingsButton> Change </SettingsButton> 
-          <Settings>
-              **** **** **** 4747
-          </Settings>
+          <Payment></Payment>
         </SettingsDiv>
 
         <Title style={settingStyle}> Leveransadress </Title>
         <SettingsDiv>
-           <SettingsButton> Change </SettingsButton> 
-          <Settings>
-              Adressen skall hämtas från "adress" componenten
+           <SettingsButton onClick={showModal}> Ändra </SettingsButton> 
+           <Settings>
+              {currentAdress}
           </Settings>
-        </SettingsDiv>
+           <Modal
+           title="Ändra din adress nedan:"
+           visible={visible}
+           onOk={handleOk}
+           onCancel={handleCancel}
+           cancelText="Avbryt"
+           >
 
+           <form onSubmit={handleOk}>
+           <StyledInput
+           value={newAdress}
+           onChange={handleAdressChange}
+           type="text"
+           placeholder={currentAdress}
+           />
+
+
+
+           </form>
+            </Modal> 
+        </SettingsDiv>
 
         <DealContainer>
             Beställ tre soppor till så bjuder vi på den sjätte

@@ -9,6 +9,7 @@ import Profile from './pages/Profile';
 import Details from './components/Details'
 import Adress from './pages/Adress'
 import Footer from './Layout/Footer';
+import SignUp from './pages/SignUp';
 
 import {CartContext} from './context/index'
 
@@ -36,8 +37,9 @@ export default function App2() {
                   <Switch>
                     <Route exact path= '/' component={Adress} />
                     <Route exact path='/home' component={Home} />
-                    <Route path='/details' component={Details}/>
+                    {/* <Route path='/details' component={Details}/> */}
                     <Route path='/profile' component={Profile} />
+                    <Route path='/signup' component={SignUp} />
                     <Route path='/cart' component={Cart} />
                   </Switch>
                 </Container>

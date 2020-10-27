@@ -60,12 +60,14 @@ function isEmpty(obj) {
 
 const Home = ({inputText}) =>{
 
-const [adress, setadress] = useState();
-const [newadress, setNewadress] = useState('adress');
+const [adress, setAdress] = useState();
+const [newAdress, setNewadress] = useState('adress');
 const [numberOfSoups, setNumberOfSoups] = useState(1);
 const [chosenSoup, setChosenSoup] = useState();
 const [chosenFilter, setChosenFilter] = useState('');
 const { cart, setCart } = useContext(CartContext)
+
+let currentAdress = localStorage.getItem('user-adress', '');
   
 const onAddToCartClick = () => {
     setNumberOfSoups(numberOfSoups);
@@ -99,10 +101,9 @@ const onAddToCartClick = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(e.target.value);
-    setadress(newadress);
+    setAdress(newAdress);
   };
   const handleAdressChange = (e) => {
-    //console.log(e.target.value);
     setNewadress(e.target.value);
     };
   const goBack = () => {
@@ -117,7 +118,7 @@ if(Object.keys(cart.current_soup).length != 0) {
 } 
 return (
     <div>
-        <StyledAdress onClick={handleAdressChange}> Nuvarande adress: <StyledAdress style={{color: "red",  marginLeft: "5px"} }> {inputText} </StyledAdress> </StyledAdress> {/* gör en onClick för attt ändra adressen. */}
+        <StyledAdress onClick={handleAdressChange}> Nuvarande adress: <p style ={{color: "red", marginLeft: "5px", marginTop: "14px"}}>{currentAdress} </p> </StyledAdress> {/* gör en onClick för attt ändra adressen. */}
         <Deals/>
         <Filter onClick={handleFilterClick} soups={menu.soups} />
         <SoupWrapper className='soupwrapper'>
