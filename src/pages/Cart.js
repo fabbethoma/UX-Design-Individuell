@@ -123,8 +123,16 @@ const Cart = (props) =>{
   let total = cart.cart.reduce((a, b) => a + Number(b.price), 0)
   let totalAmount = total + 39; // här ska sides in i beräkningen
 
+  const user_name = localStorage.getItem('user-name', '')
+
   const userSignIn = () => {
-    history.push('/signup')
+    if(user_name === null)
+    {
+      history.push('/signup')
+    }
+    else {
+      history.push('/reciept')
+    }
   }
 
 return (

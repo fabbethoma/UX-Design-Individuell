@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'; 
 import styled from 'styled-components'
+import soupLogo from '../img/soup.png'
 
 
 const StyledDiv = styled.div`
@@ -53,8 +54,9 @@ function Adress() {
   return (
       <StyledDiv className='App'>
       <div>
-        <h1 style={{marginBottom: "1px"}}>Välkommen till</h1>
-        <h1 style={{fontSize: "60px", marginTop: "1px"}}>Souperb!</h1>
+        <h1 style={{marginBottom: "1px", color: "#066638", fontFamily: 'Mystery Quest'}}>Välkommen till</h1>
+        <h1 style={{fontSize: "60px", marginTop: "1px", marginBottom: "5px", color: "#066638", fontFamily: 'Mystery Quest'}}>Souperb!</h1>
+        <img style={{height: "70px", width: "70px", margin: "auto", marginBottom: "30px"}} src={soupLogo}></img>
         <h3>Var befinner du dig någonstans?</h3>
         <form onSubmit={submit}>
           <StyledInput

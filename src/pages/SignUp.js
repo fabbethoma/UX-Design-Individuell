@@ -85,6 +85,11 @@ const SignUp = () => {
     const [newAdress, setNewAdress] = useState('');
     let currentAdress = localStorage.getItem('user-adress', '');
 
+    const [zipCode, setZipCode] = useState();
+    // let currentZipCode = localStorage.getItem('user-zipCode', '');
+
+    const [location, setLocation] = useState();
+
 
 const handleNameChange = (e) => {
     setUserName(e.target.value);
@@ -94,6 +99,14 @@ const handleAdressChange = (e) => {
     setNewAdress(e.target.value);
 }
 
+const handleZipChange = (e) => {
+    setZipCode(e.target.value);
+}
+
+const handleLocationChange = (e) => {
+    setLocation(e.target.value);
+}
+
 const onSubmit = (e) => {
     e.preventDefault();
     user_name = localStorage.setItem('user-name', userName);
@@ -101,7 +114,16 @@ const onSubmit = (e) => {
     setNewAdress(newAdress)
     currentAdress = localStorage.setItem('user-adress', newAdress);
 
-    history.push('/cart');
+    localStorage.setItem('user-zipCode', zipCode)
+    localStorage.setItem('user-location', location);
+
+    if(user_name){
+        history.push('/reciept');
+    }
+    else {
+        history.push('/cart');
+    }
+    
 
 }
 
@@ -124,9 +146,26 @@ return(
                 <Label>Leveransadress</Label>
                 <StyledInput
                 value={currentAdress}
-                onChange={handleAdressChange}
+                // fix issue with this 
+                onChange={handleAdressChange} 
                 type="text"
                 placeholder="Vägengatan 1"
+                ></StyledInput>
+
+                <Label>Postkod</Label>
+                <StyledInput
+                value={zipCode}
+                onChange={handleZipChange} 
+                type="number"
+                placeholder="123 45"
+                ></StyledInput>
+
+                <Label>Ort</Label>
+                <StyledInput
+                value={location}
+                onChange={handleLocationChange} 
+                type="text"
+                placeholder="Stockholm"
                 ></StyledInput>
 
                 <Label>Telefonnummer</Label>

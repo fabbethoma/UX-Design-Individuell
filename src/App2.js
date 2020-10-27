@@ -10,15 +10,16 @@ import Details from './components/Details'
 import Adress from './pages/Adress'
 import Footer from './Layout/Footer';
 import SignUp from './pages/SignUp';
+import Reciept from './pages/Reciept';
+import Done from './pages/Done'
+import Delivery from './pages/Delivery'
 
 import {CartContext} from './context/index'
 
 const Container = styled.div` 
 width: 100vw;
+
 `;
-// här kan du göra ett context state kanske. där du har din varukorg
-// då har du varukorgen tillgänglig vid betalningssteget sen också
-//nu har vi skapat en provider som kan passa statet genom alla componenter
 
 const initialState = {
   cart: [],
@@ -37,10 +38,12 @@ export default function App2() {
                   <Switch>
                     <Route exact path= '/' component={Adress} />
                     <Route exact path='/home' component={Home} />
-                    {/* <Route path='/details' component={Details}/> */}
                     <Route path='/profile' component={Profile} />
                     <Route path='/signup' component={SignUp} />
+                    <Route path='/reciept' component={Reciept} />
                     <Route path='/cart' component={Cart} />
+                    <Route path='/done' component={Done} />
+                    <Route path='/delivery' component={Delivery} />
                   </Switch>
                 </Container>
                 <Footer />

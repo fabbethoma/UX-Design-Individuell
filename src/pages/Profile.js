@@ -107,6 +107,9 @@ const [newAdress, setNewAdress] = useState('');
 let currentAdress = localStorage.getItem('user-adress', '');
 
 let user_name = localStorage.getItem('user-name', '');
+const user_adress = localStorage.getItem('user-adress', '');
+const zipCode = localStorage.getItem('user-zipCode', '');
+const location = localStorage.getItem('user-location', '');
 
 const handleAdressChange = (e) => {
   setNewAdress(e.target.value);
@@ -155,9 +158,25 @@ return (
         <Title style={settingStyle}> Leveransadress </Title>
         <SettingsDiv>
            <SettingsButton onClick={showModal}> Ändra </SettingsButton> 
-           <Settings>
-              {currentAdress}
-          </Settings>
+              
+              {user_name
+              ? <Settings>
+                  <Settings  style={{marginBottom: "0"}}>
+                  {user_name}
+                  </Settings>
+                  <Settings  style={{marginBottom: "0"}}>
+                  {user_adress}
+                  </Settings>
+                  <Settings  style={{marginBottom: "0"}}>
+                  {zipCode}
+                  </Settings>
+                  <Settings  style={{marginBottom: "0"}}>
+                  {location}
+                  </Settings>
+                </Settings>
+            : <Settings> {currentAdress} </Settings>
+              }
+
            <Modal
            title="Ändra din adress nedan:"
            visible={visible}
@@ -173,9 +192,7 @@ return (
            type="text"
            placeholder={currentAdress}
            />
-
-
-
+           
            </form>
             </Modal> 
         </SettingsDiv>
