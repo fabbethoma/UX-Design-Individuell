@@ -5,6 +5,8 @@ This project was the second part of a UX-Design course. The goal was to identify
 
 This is the UX-project, but built with React. 
 
+NOTE: The application is not scaled for PC-screen, HINT use mobile inspector for the intended user experience. 
+
 https://www.figma.com/file/tL19YXSOiIpwaYzoEP6oBO/Grupp7?node-id=169%3A28
 
 

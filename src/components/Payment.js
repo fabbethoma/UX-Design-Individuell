@@ -68,11 +68,9 @@ const PaymentOptions = () => {
   const statusHandler = (e) => {
     setSelected(e.target.value)
     setVisible(false);
-    console.log(selected)
   }
 
   const showOptions = () => {
-
     setVisible(!visible);
   }
 
