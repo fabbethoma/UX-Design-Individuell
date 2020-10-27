@@ -123,6 +123,10 @@ const Cart = (props) =>{
   let total = cart.cart.reduce((a, b) => a + Number(b.price), 0)
   let totalAmount = total + 39; // här ska sides in i beräkningen
 
+  const userSignIn = () => {
+    history.push('/signup')
+  }
+
 return (
     <ContainerDiv>
       <div onClick={() => history.push('/home')}>
@@ -175,7 +179,7 @@ return (
 
         {total > 0 
         ? 
-        <ToPayment>
+        <ToPayment onClick={userSignIn}>
           TILL BETALNING
         </ToPayment>
         : null

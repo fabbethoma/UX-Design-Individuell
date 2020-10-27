@@ -58,8 +58,7 @@ function Adress() {
         <h3>Var befinner du dig någonstans?</h3>
         <form onSubmit={submit}>
           <StyledInput
-            // value={newAdress}
-            // value={inputText}
+            value={adress}
             onChange={handleAdressChange}
             type='text'
             placeholder='Adress'
