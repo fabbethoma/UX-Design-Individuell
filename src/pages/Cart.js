@@ -22,7 +22,7 @@ font-size: 20px;
 
 `;
 
-const SoupName = styled.p`
+const SoupName = styled.span`
 margin-top: 7px;
 margin-left: 10px;
 display: flex;
@@ -30,7 +30,7 @@ flex-direction: row;
 justify-content: space-between;
 `;
 
-const SoupPrice = styled.p`
+const SoupPrice = styled.span`
 color: #9586A8;
 margin-right: 10px;
 `;
@@ -67,27 +67,20 @@ bottom: 140px;
 height: 15vh;
 `;
 
-const ToPayText = styled.p`
+const ToPayText = styled.span`
 margin-left: 15px;
 grid-column: 1;
 color: #9586A8;
 `;
 
-const ToPayAmount = styled.p`
+const ToPayAmount = styled.span`
 margin-right: 15px;
 grid-column: 2;
 display: flex;
 justify-content: flex-end;
 `;
 
-const DividerDiv = styled.div`
-width: 80vw;
-height: 1px;
-color: #9586A8;
-
-`;
-
-const EmptyCart = styled.p`
+const EmptyCart = styled.span`
 opacity: 0.5;
 margin: auto;
 font-size: 25px;
@@ -134,7 +127,12 @@ const Cart = (props) =>{
       history.push('/reciept')
     }
   }
-
+  const renderSides = (sides) => {
+    
+    console.log(sides)
+    return sides.map((side, index) => (
+    <span key={index}>{side.name}</span>));
+  }
 return (
     <ContainerDiv>
       <div onClick={() => history.push('/home')}>
@@ -144,29 +142,29 @@ return (
         <Title>KUNDVAGN</Title>
       </TitleDiv>
 
-        {cart.cart && cart.cart.map(item => (
-          <AddedObjects> 
+        {cart.cart && cart.cart.map((item, index) => (
+          <AddedObjects key={index}> 
             <SoupName>
             {item.name}
                 <SoupPrice>
                 {item.price}kr
                 </SoupPrice>
-            </SoupName>
-
+              </SoupName> 
           </AddedObjects>
         ))}
 
-        {/* {cart.cart.sides && cart.cart.sides.map(item => (
-          <AddedObjects>
+            {/* fix this */}
+        {cart.cart && cart.cart.map((item, index) => (
+          <AddedObjects key={index}>
             <SoupName>
-            {item.name}
+            {renderSides(item.sides)}
                 <SoupPrice>
-                {item.price}kr
+                {renderSides(item.sides)}kr
                 </SoupPrice>
             </SoupName>
           </AddedObjects>
           
-        ))} */}
+        ))} 
 
         {/* {cart.cart.sides && cart.cart.sides.map((side) => (
           <Money>
