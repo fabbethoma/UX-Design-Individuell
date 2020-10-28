@@ -90,6 +90,18 @@ const PaymentOptions = () => {
             </Settings>
 
             }
+          
+
+          {/* {selected === "credit"
+            ?
+            <Settings>
+            <FiCreditCard style={{marginRight: "10px", fontSize: "20px"}}/> **** **** **** 4747
+            </Settings>
+            : selected === "nocredit" ? <Settings>
+                {selected}
+            </Settings> : null
+
+            } */}
 
             {selected === null && visible === false
             ? <Settings>Lägg till en betalningsmetod</Settings>
