@@ -13,6 +13,7 @@ import SignUp from './pages/SignUp';
 import Reciept from './pages/Reciept';
 import Done from './pages/Done'
 import Delivery from './pages/Delivery'
+import SignIn from './pages/SignIn';
 
 import {CartContext} from './context/index'
 
@@ -40,6 +41,7 @@ export default function App2() {
                     <Route exact path='/home' component={Home} />
                     <Route path='/profile' component={Profile} />
                     <Route path='/signup' component={SignUp} />
+                    <Route path='/signin' component={SignIn} />
                     <Route path='/reciept' component={Reciept} />
                     <Route path='/cart' component={Cart} />
                     <Route path='/done' component={Done} />
