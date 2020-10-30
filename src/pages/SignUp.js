@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import {useHistory} from 'react-router-dom'
+import Password from 'antd/lib/input/Password';
 
 const ContainerDiv = styled.div`
   height: 90vh;
@@ -30,11 +31,12 @@ justify-content: center;
 `;
 
 const Form = styled.form`
-margin: 0 auto;
+margin-left: auto;
+margin-right: auto;
 display flex;
 flex-direction: column;
 width: 85vw;
-margin-top: 10vh;
+margin-top: 15px;
 
 `;
 
@@ -68,7 +70,7 @@ outline: none;
 
 const alreadyAccount = {
     margin: 'auto',
-    marginTop: '100px',
+    marginTop: '20px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center'
@@ -81,6 +83,9 @@ const SignUp = () => {
 
     const [userName, setUserName] = useState();
     let user_name = localStorage.getItem('user-name', '');
+
+
+    const [password, setPassword] = useState();
 
     const [newAdress, setNewAdress] = useState('');
     let currentAdress = localStorage.getItem('user-adress', '');
@@ -107,6 +112,10 @@ const handleLocationChange = (e) => {
     setLocation(e.target.value);
 }
 
+const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+}
+
 const onSubmit = (e) => {
     e.preventDefault();
     user_name = localStorage.setItem('user-name', userName);
@@ -116,6 +125,7 @@ const onSubmit = (e) => {
 
     localStorage.setItem('user-zipCode', zipCode)
     localStorage.setItem('user-location', location);
+    localStorage.setItem('user-password', password)
 
     if(user_name){
         history.push('/reciept');
@@ -174,6 +184,14 @@ return(
                 placeholder="+46 *** *** ***"
                 ></StyledInput>
 
+                <Label>Lösenord</Label>
+                <StyledInput
+                value={Password}
+                onChange={handlePasswordChange}
+                type="password"
+                placeholder=""
+                ></StyledInput>
+
 
             <SubmitButton type="submit" onClick={onSubmit}>
                 Registrera konto
@@ -182,8 +200,9 @@ return(
 
             <div style={alreadyAccount}>
             <h4 style={{textDecoration:'underline'}}> Har du redan ett konto? </h4>
-            <p style={{textDecoration:'underline', marginRight: "auto", marginLeft: "auto"}}> Klicka här! </p>
+            <button onSubmit={() => history.push('/signin')} style={{textDecoration:'underline', marginRight: "auto", marginLeft: "auto", border: "none", outline: "none", backgroundColor:"inherit"}}> Klicka här! </button>
             </div>
+            
             
         </ContainerDiv>
     );
