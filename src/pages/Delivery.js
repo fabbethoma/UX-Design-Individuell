@@ -75,8 +75,8 @@ const Delivery = () => {
         style={{
             fontSize: "40px",
             marginTop: "1px",
-            marginBottom: "5px", 
-            color: "#066638", 
+            marginBottom: "5px",
+            color: "#066638",
             fontFamily: 'Mystery Quest',
             marginLeft: "auto",  
             marginRight: "auto"}}

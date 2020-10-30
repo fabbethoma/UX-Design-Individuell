@@ -70,7 +70,6 @@ outline: none;
 const SignIn = () => {
 
   const history = useHistory();
-
   
   const handleNameChange = (e) => {
     setUserName(e.target.value);
@@ -78,6 +77,16 @@ const SignIn = () => {
 
 const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+}
+
+const onSubmit = () => {
+
+  if(user_name){
+    history.push('/reciept');
+  }
+  else{
+    return(<span> Du har inte angivit rätt användarnamn eller lösenord </span>)
+  }
 }
 
     const [userName, setUserName] = useState();
@@ -88,25 +97,26 @@ const handlePasswordChange = (e) => {
 
     return(
     <ContainerDiv>
+      <TitleDiv>
+        <Title> Registrera konto </Title>
+      </TitleDiv>
       <Form>
-                <Label>Användarnamn</Label>
-                <StyledInput
-                // value={userName}
-                onChange={handleNameChange}
-                type="text"
-                placeholder="Användarnamn"
-                ></StyledInput>
+        <Label>Användarnamn</Label>
+        <StyledInput
+        onChange={handleNameChange}
+        type="text"
+        placeholder="Användarnamn"
+        ></StyledInput>
 
+        <Label>Lösenord</Label>
+        <StyledInput
+        onChange={handleNameChange}
+        type="password"
+        ></StyledInput>
 
-                <Label>Lösenord</Label>
-                <StyledInput
-                // value={userName}
-                onChange={handleNameChange}
-                type="text"
-                placeholder="Användarnamn"
-                ></StyledInput>
-
-
+          <SubmitButton type="submit" onClick={onSubmit}>
+            Logga in
+          </SubmitButton>
       </Form>
 
     </ContainerDiv>

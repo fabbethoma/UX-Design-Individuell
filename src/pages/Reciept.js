@@ -46,6 +46,25 @@ width: 100vw;
 
 `;
 
+const SettingsDiv1 = styled.div`
+
+// height: 15vh;
+width: 100vw;
+// display: flex;
+// justify-content: space-between;
+
+
+`;
+const SettingsDiv2 = styled.div`
+
+// height: 15vh;
+width: 100vw;
+// display: flex;
+// justify-content: space-between;
+
+
+`;
+
 const Settings = styled.p`
 color: #9586A8;
 justify-content: flex-start;
@@ -88,12 +107,9 @@ const Reciept = () => {
   const location = localStorage.getItem('user-location', '');
 
   const [style, setStyle] = useState();
-  // const [selected, setSelected] = useState(false);
-
+  const [style1, setStyle1] = useState();
 
   const handleDeliveryChange = (e) => {
-
-    let clickedOption = e.target;
 
       if(style != chosenOption){
        setStyle(chosenOption)
@@ -101,7 +117,15 @@ const Reciept = () => {
       else {
         setStyle(null);
       }
-      console.log(e.target)
+  }
+  const handleDeliveryChange1 = (e) => {
+
+      if(style1 != chosenOption){
+       setStyle1(chosenOption)
+      }
+      else {
+        setStyle1(null);
+      }
   }
 
   const finishPayment = () => {
@@ -138,13 +162,15 @@ const Reciept = () => {
         </SettingsDiv>
 
     <Title style={settingStyle}> Leveransalternativ </Title>
+
     <SettingsDiv onClick={handleDeliveryChange} style={style} value="pickup"> 
       <Title style={{justifyContent: "flex-start", marginLeft: "15px" }}> 
       <BiWalk style={{fontSize: "25px", marginRight: "10px"}}/>
       Jag hämtar soppan själv 
       </Title>
     </SettingsDiv>
-    <SettingsDiv onClick={handleDeliveryChange} style={style} value="delivery"> 
+
+    <SettingsDiv onClick={handleDeliveryChange1} style={style1} value="delivery"> 
       <Title style={{justifyContent: "flex-start", marginLeft: "15px" }}>
       <IoIosBicycle style={{fontSize: "25px", marginRight: "10px"}}/> 
       Jag vill att soppan budas ut 

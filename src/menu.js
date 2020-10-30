@@ -115,7 +115,7 @@ let menu = {
     { name: 'Vitlöksbröd', kcal: '120', price: '35', img: '', id: 1, type: 'bread' },
     { name: 'Bondlimpa', kcal: '95', price: '25', img: '', id: 2, type: 'bread' },
     { name: 'Fralla', kcal: '60', price: '15', img: '', id: 3, type: 'bread' },
-    { name: 'vitlöksbröd igen', kcal: '120', price: '35', img: '', id:4, type: 'bread' },
+    { name: 'Levain', kcal: '120', price: '35', img: '', id:4, type: 'bread' },
 
   ]
 };
