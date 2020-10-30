@@ -1,13 +1,26 @@
 ABOUT PROJECT:
 
 In short:
-This project was the second part of a UX-Design course. The goal was to identify user needs, user stories, and create a demo in figma (link further down) based on those needs.
+This application is based on an UX-project, where the mission was to create a food-delivery app/service. 
+This project was the second part of a UX-Design course. The goal was to identify user needs, user stories, and create a prototype in figma (link further down) based on those needs.
 
-This is the UX-project, but built with React. 
+This is the UX-project, based on the MVP and the figma-demo, but built with React. 
 
 NOTE: The application is not scaled for PC-screen, HINT use mobile inspector for the intended user experience. 
 
 https://www.figma.com/file/tL19YXSOiIpwaYzoEP6oBO/Grupp7?node-id=169%3A28
+
+
+!!!NOTE!!
+
+There are still bugs that needs to be fixed, and they are known issues. They will get fixed in the near future. 
+
+
+KNOWN ISSUES: 
+* When in main-page and clicking on the cart (and the cart is empty) the application crashes. To avoid this, please select a soup and then continue to use the app.
+
+* When the user has selected a soup and any extra side, and then goes back to select another soup and sides, the second soup's sides does not appear in cart.
+
 
 
 

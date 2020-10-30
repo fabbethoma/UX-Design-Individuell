@@ -109,18 +109,29 @@ const goBackStyle = {
 };
 
 
-const Cart = (props) =>{
+const Cart = (props) => {
   const history = useHistory();
-  const {cart, setCart} = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
 
   let total = cart.cart.reduce((a, b) => a + Number(b.price), 0)
-  let totalAmount = total + 39; // här ska sides in i beräkningen
+  
+  const countSideVal = () => {
+    let val = 0;
+    foundSides.forEach(elem => {
+      val += Number(elem.price)*Number(elem.amount + 1)
+    })
+    console.log(val)
+    return val
+  }
+  
+  const foundSides = cart.cart[0].sides.filter(i => i.amount >= 0);
+
+  let totalAmount = total + countSideVal(foundSides) + 39; 
 
   const user_name = localStorage.getItem('user-name', '')
 
   const userSignIn = () => {
-    if(user_name === null)
-    {
+    if (user_name === null) {
       history.push('/signup')
     }
     else {
@@ -128,11 +139,20 @@ const Cart = (props) =>{
     }
   }
   const renderSides = (sides) => {
-    
-    console.log(sides)
-    return sides.map((side, index) => (
-    <span key={index}>{side.name}</span>));
-  }
+    const foundSides = sides.filter(i => i.amount >= 0)
+    return foundSides.map((side, index) => (
+      <AddedObjects key={index}>
+        <SoupName>
+          {side.name} <br/>
+          antal: {side.amount + 1} 
+          <SoupPrice>
+            {side.price}kr
+          </SoupPrice>
+        </SoupName>
+      </AddedObjects>
+    ))
+}
+
 return (
     <ContainerDiv>
       <div onClick={() => history.push('/home')}>
@@ -152,30 +172,13 @@ return (
               </SoupName> 
           </AddedObjects>
         ))}
+        { cart.cart &&  renderSides(cart.cart[0].sides) }
 
-            {/* fix this */}
-        {cart.cart && cart.cart.map((item, index) => (
-          <AddedObjects key={index}>
-            <SoupName>
-            {renderSides(item.sides)}
-                <SoupPrice>
-                {renderSides(item.sides)}kr
-                </SoupPrice>
-            </SoupName>
-          </AddedObjects>
-          
-        ))} 
-
-        {/* {cart.cart.sides && cart.cart.sides.map((side) => (
-          <Money>
-            <ToPayText> Tillägg </ToPayText> <ToPayAmount> {side.price}kr</ToPayAmount> 
-          </Money>
-        ))} */}
 
         {total > 0 ? 
         <Money>
           <ToPayText style={{gridRow: "1", gridColumn: "1"}}> Mat </ToPayText> <ToPayAmount style={{gridRow: "1", gridColumn: "2"}}> {total}kr </ToPayAmount>
-          <ToPayText style={{gridRow: "2", gridColumn: "1"}}> Extra Tillägg </ToPayText> <ToPayAmount style={{gridRow: "2", gridColumn: "2"}}> kr</ToPayAmount>
+          <ToPayText style={{gridRow: "2", gridColumn: "1"}}> Extra Tillägg </ToPayText> <ToPayAmount style={{gridRow: "2", gridColumn: "2"}}>{countSideVal(foundSides)} kr</ToPayAmount>
           <ToPayText style={{gridRow: "3", gridColumn: "1"}}> Leverans </ToPayText> <ToPayAmount style={{gridRow: "3", gridColumn: "2"}}> 39kr </ToPayAmount>
           <ToPayText style={{gridRow: "4", gridColumn: "1", borderTop: "1px solid #ccc"}}> Totalt </ToPayText> <ToPayAmount style={{gridRow: "4", gridColumn: "2", borderTop: "1px solid #ccc"}}> {totalAmount}kr </ToPayAmount>
         </Money>

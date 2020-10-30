@@ -120,7 +120,7 @@ const onSubmit = (e) => {
     e.preventDefault();
     user_name = localStorage.setItem('user-name', userName);
 
-    setNewAdress(newAdress)
+    // setNewAdress(newAdress)
     currentAdress = localStorage.setItem('user-adress', newAdress);
 
     localStorage.setItem('user-zipCode', zipCode)
@@ -186,7 +186,7 @@ return(
 
                 <Label>Lösenord</Label>
                 <StyledInput
-                value={Password}
+                value={password}
                 onChange={handlePasswordChange}
                 type="password"
                 placeholder=""
@@ -200,7 +200,15 @@ return(
 
             <div style={alreadyAccount}>
             <h4 style={{textDecoration:'underline'}}> Har du redan ett konto? </h4>
-            <button onSubmit={() => history.push('/signin')} style={{textDecoration:'underline', marginRight: "auto", marginLeft: "auto", border: "none", outline: "none", backgroundColor:"inherit"}}> Klicka här! </button>
+            <button 
+            onClick={() => history.push('/signin')} 
+            style={{textDecoration:'underline',
+             marginRight: "auto", 
+             marginLeft: "auto", 
+             border: "none", 
+             outline: "none", 
+             backgroundColor:"inherit"}}
+             > Klicka här! </button>
             </div>
             
             
